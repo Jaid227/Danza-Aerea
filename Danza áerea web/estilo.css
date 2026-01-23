@@ -1,0 +1,67 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+header h1{
+    background: linear-gradient(120deg, #c33764, #1d2671);
+    font-size: 150px;
+    color: rgb(245, 106, 129); 
+}
+
+header h4{
+    font-size: 30px;
+    color: pink;
+}
+
+header h5{
+    font-size: 30px;
+    color: rgb(231, 228, 228);
+}
+
+.divicion{    
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(120deg, #1d2671, #c33764);
+}
+
+/* ---------- IMÁGENES ---------- */
+.imagen{
+    margin: 10px;
+    width: 220px;
+    transition: transform 0.3s ease;
+    /*cursor: pointer;*/
+}
+
+/* Crece al pasar el mouse */
+.imagen:hover{
+    transform: scale(1.15);
+}
+/* -------------------------------- */
+
+article{
+    color: pink;
+    font-size: 30px;
+}
+
+article h3{
+    margin: 10px;
+    padding: 10px;  
+    color: pink;  
+}
+
+a{
+    color: green;    
+}
+
+footer h3{
+    background: linear-gradient(120deg, #8b1d40, #0c124e);
+    margin: 0 10px;
+}
+
+.pie{
+    color: rgb(255, 200, 236);
+}
+
