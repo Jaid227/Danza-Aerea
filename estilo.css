@@ -1,156 +1,123 @@
+
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial;
 }
 
-/* ----- HERO ----- */
-.hero{
-    height: 100vh;
-    background:
-      linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-      url("imagenes/tela1.jpg");
-
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.capa h1{
-    font-size: 90px;
-    color: #ff7aa2;
-    text-shadow: 0 0 20px #ff2d6f;
-    animation: aparecer 2s ease;
-}
-
-.capa h4,
-.capa h5{
-    color: #fff;
-    margin: 10px;
-}
-
-.btn{
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-
-    background: #ff2d6f;
-    color: white;
-
-    text-decoration: none;
-    border-radius: 30px;
-
-    transition: .3s;
-}
-
-.btn:hover{
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #ff2d6f;
-}
-
-/* ----- INFO ----- */
-.info{
-    background: linear-gradient(120deg,#1d2671,#c33764);
-    color: pink;
-
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.info h2{
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-
-.precio{
-    font-size: 26px;
-    margin-top: 15px;
-    color: #fff;
-}
-
-/* ----- GALERÍA ----- */
-.galeria{
-    background: #0e0e1f;
-    padding: 50px 10px;
-    text-align: center;
-}
-
-.galeria h2{
-    color: pink;
-    margin-bottom: 20px;
+body{
+background: linear-gradient(120deg, #1d2671, #c33764);
 }
 
 .contenedor{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+text-align: center;
+}
+
+/* ----- MENU ----- */
+.menu{
+padding: 40px;
+}
+
+.menu h1{
+color: white;
+font-size: 40px;
+margin-bottom: 20px;
+}
+
+.opciones{
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+.boton{
+background: #ff4b7a;
+padding: 15px 25px;
+color: white;
+text-decoration: none;
+border-radius: 10px;
+transition: 0.3s;
+}
+
+.boton:hover{
+background: #ff8fab;
+transform: scale(1.1);
+}
+
+/* ----- SECCIONES ----- */
+.disciplina{
+margin: 40px 20px;
+padding: 20px;
+border-radius: 15px;
+}
+
+.aerea{
+background: rgba(0,0,0,0.3);
+}
+
+.pole{
+background: rgba(0,0,0,0.5);
+}
+
+.disciplina h2{
+font-size: 45px;
+color: #ffcce6;
+}
+
+.disciplina h4{
+color: white;
+margin-bottom: 10px;
+}
+
+article h3{
+color: pink;
+margin: 15px;
+}
+
+.horario{
+color: white;
+font-size: 18px;
+}
+
+.contacto{
+color: #ffd1e8;
+margin-top: 10px;
+}
+
+/* ----- IMÁGENES ----- */
+.galeria{
+margin-top: 15px;
 }
 
 .imagen{
-    width: 260px;
-    margin: 10px;
-
-    border-radius: 10px;
-    transition: .4s;
-
-    box-shadow: 0 0 10px black;
+width: 220px;
+margin: 10px;
+transition: 0.3s;
 }
 
 .imagen:hover{
-    transform: scale(1.15) rotate(2deg);
-    box-shadow: 0 0 20px #ff2d6f;
+transform: scale(1.15);
 }
 
-/* ----- UBICACIÓN ----- */
-.ubicacion{
-    background: linear-gradient(120deg,#c33764,#1d2671);
-    color: white;
-
-    text-align: center;
-    padding: 40px 20px;
+/* ----- DIRECCIÓN ----- */
+.direccion{
+margin-top: 30px;
+padding: 20px;
+color: white;
 }
 
-.tel{
-    margin-top: 10px;
-    font-size: 22px;
-}
-
-/* ----- FOOTER ----- */
-.pie{
-    background: #050510;
-    color: pink;
-
-    text-align: center;
-    padding: 20px;
-}
-
-/* ----- ANIMACIÓN ----- */
-@keyframes aparecer{
-    from{
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ----- RESPONSIVO ----- */
+/* RESPONSIVO */
 @media(max-width: 700px){
-
-    .capa h1{
-        font-size: 50px;
-    }
-
-    .imagen{
-        width: 90%;
-    }
+.opciones{
+flex-direction: column;
 }
 
+```
+.imagen{
+    width: 90%;
+}
+```
+
+}
 
