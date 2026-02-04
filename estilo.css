@@ -1,4 +1,3 @@
-
 body{
   font-family: Arial;
   background: #f0f0f0;
@@ -10,7 +9,6 @@ body{
   padding: 15px;
   border-radius: 10px;
   width: 320px;
-  margin-bottom: 20px;
 }
 
 input, textarea{
@@ -24,7 +22,6 @@ button{
   color: white;
   border: none;
   padding: 6px;
-  cursor: pointer;
 }
 
 .comentario{
@@ -34,19 +31,5 @@ button{
   border-radius: 8px;
 }
 
-.respuesta{
-  background: #e8e8ff;
-  margin: 5px 0 5px 20px;
-  padding: 6px;
-  border-radius: 6px;
-}
-
-.caja-respuesta{
-  margin-top: 5px;
-}
-
-.oculto{
-  display: none;
-}
 
 
