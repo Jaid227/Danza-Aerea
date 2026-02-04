@@ -1,106 +1,210 @@
 
 <!DOCTYPE html>
-
-<html lang="es">
+<html>
 <head>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="estilo.css">
-    <title>🔥 Danza Aérea & Pole Dance 🔥</title>
+    <title>Comentarios con Respuestas</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-<div class="contenedor">
+<h1>Comentarios</h1>
 
-```
-<!-- MENÚ INICIAL -->
-<section class="menu">
-    <h1>Elige tu disciplina inicial</h1>
+<div class="formulario">
+    <input id="nombre" placeholder="Tu nombre">
+    <textarea id="mensaje" placeholder="Escribe tu comentario"></textarea>
 
-    <div class="opciones">
-        <a href="#aerea" class="boton">Danza Aérea</a>
-        <a href="#pole" class="boton">Pole Dance</a>
-    </div>
-</section>
-
-
-<!-- ============ DANZA AÉREA ============ -->
-<section id="aerea" class="disciplina aerea">
-
-    <header>
-        <h2>Danza Aérea</h2>
-        <h4>Maestra Sonia</h4>
-    </header>
-
-    <article>
-        <h3>
-            La danza aérea es el arte de soltar el peso del cuerpo
-            para dialogar con el vacío.
-        </h3>
-
-        <p class="horario">
-            Horarios: Lunes a Viernes – 7:30 PM
-        </p>
-
-        <p class="contacto">
-            Teléfono: 5591461227
-        </p>
-    </article>
-
-            <img src="imagenes/tela1.jpg" class="imagen">
-            <img src="imagenes/tela2.jpg" class="imagen">
-            <img src="imagenes/tela3.jpg" class="imagen">  
-
-</section>
-
-
-<!-- ============ POLE DANCE ============ -->
-<section id="pole" class="disciplina pole">
-
-    <header>
-        <h2>Pole Dance</h2>
-        <h4>Maestra Kari</h4>
-    </header>
-
-    <article>
-        <h3>
-            Sujeta el presente, suelta el temor.<br>
-            Cada giro es una conversación entre tu cuerpo y tu confianza.
-        </h3>
-
-        <p class="horario">
-            Horarios:<br>
-            Martes y Jueves – 8 PM<br>
-            Lunes, Miércoles y Viernes – 10 AM<br>
-            Martes, Miércoles y Jueves – 7 PM
-        </p>
-
-        <p class="contacto">
-            Teléfono: 5539030758
-        </p>
-    </article>
-
-            <img src="imagenes/tela1.jpg" class="imagen">
-            <img src="imagenes/tela2.jpg" class="imagen">
-            <img src="imagenes/tela3.jpg" class="imagen">
-
-</section>
-
-
-<!-- DIRECCIÓN COMÚN -->
-<footer class="direccion">
-    <h3>
-        Pino Suárez 470, El Salado,
-        56524 La Magdalena Atlicpac, Méx.
-    </h3>
-    <h4>2026</h4>
-</footer>
-```
-
+    <button onclick="guardarComentario()">
+        Enviar comentario
+    </button>
 </div>
+
+<h2>Todos los comentarios:</h2>
+
+<div id="lista"></div>
+
+
+<!-- ========== FIREBASE ========== -->
+<script type="module">
+
+import { initializeApp } from 
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  onSnapshot,
+  orderBy,
+  query,
+  doc
+} from 
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+// ⚠️ AQUÍ PONES TUS DATOS DE FIREBASE
+const firebaseConfig = {
+  apiKey: "TU_API",
+  authDomain: "TU_DOMINIO",
+  projectId: "TU_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+// ===== GUARDAR COMENTARIO PRINCIPAL =====
+window.guardarComentario = async function() {
+
+  let nombre = nombre.value = document.getElementById("nombre").value;
+  let mensaje = document.getElementById("mensaje").value;
+
+  if(nombre == "" || mensaje == ""){
+    alert("Llena todo");
+    return;
+  }
+
+  await addDoc(collection(db, "comentarios"), {
+    nombre: nombre,
+    mensaje: mensaje,
+    fecha: new Date()
+  });
+
+  document.getElementById("mensaje").value = "";
+}
+
+
+
+// ===== MOSTRAR COMENTARIOS =====
+const q = query(
+  collection(db, "comentarios"),
+  orderBy("fecha", "desc")
+);
+
+onSnapshot(q, (datos) => {
+
+  let html = "";
+
+  datos.forEach(com => {
+
+    let c = com.data();
+
+    html += `
+      <div class="comentario">
+
+        <b>${c.nombre}</b>
+        <p>${c.mensaje}</p>
+
+        <button onclick="mostrarCaja('${com.id}')">
+            Responder
+        </button>
+
+        <div id="caja-${com.id}" class="caja-respuesta oculto">
+
+          <input id="nom-${com.id}" placeholder="Tu nombre">
+          <textarea id="msj-${com.id}" 
+            placeholder="Tu respuesta"></textarea>
+
+          <button onclick="guardarRespuesta('${com.id}')">
+            Enviar respuesta
+          </button>
+
+        </div>
+
+        <div id="respuestas-${com.id}" 
+             class="zona-respuestas">
+        </div>
+
+      </div>
+    `;
+
+    cargarRespuestas(com.id);
+
+  });
+
+  document.getElementById("lista").innerHTML = html;
+
+});
+
+
+
+// ===== MOSTRAR CAJA RESPUESTA =====
+window.mostrarCaja = function(id){
+  document.getElementById("caja-" + id)
+          .classList.toggle("oculto");
+}
+
+
+
+// ===== GUARDAR RESPUESTA =====
+window.guardarRespuesta = async function(id){
+
+  let nombre =
+   document.getElementById("nom-" + id).value;
+
+  let mensaje =
+   document.getElementById("msj-" + id).value;
+
+  if(nombre == "" || mensaje == ""){
+    alert("Llena todo");
+    return;
+  }
+
+  await addDoc(
+    collection(db, "comentarios", id, "respuestas"),
+    {
+      nombre: nombre,
+      mensaje: mensaje,
+      fecha: new Date()
+    }
+  );
+
+  document.getElementById("msj-" + id).value = "";
+
+}
+
+
+
+// ===== CARGAR RESPUESTAS =====
+function cargarRespuestas(id){
+
+  const qr = query(
+    collection(db, "comentarios", id, "respuestas"),
+    orderBy("fecha", "asc")
+  );
+
+  onSnapshot(qr, (datos) => {
+
+    let html = "";
+
+    datos.forEach(r => {
+
+      let d = r.data();
+
+      html += `
+        <div class="respuesta">
+          <b>${d.nombre}</b>
+          <p>${d.mensaje}</p>
+        </div>
+      `;
+    });
+
+    let zona =
+     document.getElementById("respuestas-" + id);
+
+    if(zona){
+      zona.innerHTML = html;
+    }
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
+
 
 
 
