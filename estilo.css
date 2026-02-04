@@ -1,123 +1,52 @@
 
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: Arial;
-}
-
 body{
-background: linear-gradient(120deg, #1d2671, #c33764);
+  font-family: Arial;
+  background: #f0f0f0;
+  padding: 20px;
 }
 
-.contenedor{
-text-align: center;
+.formulario{
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 320px;
+  margin-bottom: 20px;
 }
 
-/* ----- MENU ----- */
-.menu{
-padding: 40px;
+input, textarea{
+  width: 100%;
+  margin: 5px 0;
+  padding: 6px;
 }
 
-.menu h1{
-color: white;
-font-size: 40px;
-margin-bottom: 20px;
+button{
+  background: purple;
+  color: white;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
 }
 
-.opciones{
-display: flex;
-justify-content: center;
-gap: 20px;
+.comentario{
+  background: white;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.boton{
-background: #ff4b7a;
-padding: 15px 25px;
-color: white;
-text-decoration: none;
-border-radius: 10px;
-transition: 0.3s;
+.respuesta{
+  background: #e8e8ff;
+  margin: 5px 0 5px 20px;
+  padding: 6px;
+  border-radius: 6px;
 }
 
-.boton:hover{
-background: #ff8fab;
-transform: scale(1.1);
+.caja-respuesta{
+  margin-top: 5px;
 }
 
-/* ----- SECCIONES ----- */
-.disciplina{
-margin: 40px 20px;
-padding: 20px;
-border-radius: 15px;
+.oculto{
+  display: none;
 }
 
-.aerea{
-background: rgba(0,0,0,0.3);
-}
-
-.pole{
-background: rgba(0,0,0,0.5);
-}
-
-.disciplina h2{
-font-size: 45px;
-color: #ffcce6;
-}
-
-.disciplina h4{
-color: white;
-margin-bottom: 10px;
-}
-
-article h3{
-color: pink;
-margin: 15px;
-}
-
-.horario{
-color: white;
-font-size: 18px;
-}
-
-.contacto{
-color: #ffd1e8;
-margin-top: 10px;
-}
-
-/* ----- IMÁGENES ----- */
-.galeria{
-margin-top: 15px;
-}
-
-.imagen{
-width: 220px;
-margin: 10px;
-transition: 0.3s;
-}
-
-.imagen:hover{
-transform: scale(1.15);
-}
-
-/* ----- DIRECCIÓN ----- */
-.direccion{
-margin-top: 30px;
-padding: 20px;
-color: white;
-}
-
-/* RESPONSIVO */
-@media(max-width: 700px){
-.opciones{
-flex-direction: column;
-}
-
-```
-.imagen{
-    width: 90%;
-}
-```
-
-}
 
