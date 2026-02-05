@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Comentarios con Sheets</title>
+  <title>Comentarios con Likes</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-<h1>Comentarios</h1>
+<h1>Comentarios con 👍</h1>
 
 <div class="formulario">
   <input id="nombre" placeholder="Tu nombre">
@@ -21,19 +21,21 @@
   </button>
 </div>
 
-<h2>Mensajes:</h2>
 
+<h2>Mensajes:</h2>
 <div id="lista"></div>
+
 
 
 <script>
 
-// ✅ TU API YA COLOCADA
+// 👉 PON TU URL REAL AQUÍ
 const API =
-"https://script.google.com/macros/s/AKfycbxo5-YfFXcKwYjhe9bt5TvROd0L8hMlmYBxlUD2dBUUFJ7HNwTeSdC_VNvu1zR58Lr1Hg/exec";
+"https://script.google.com/macros/s/TU_URL/exec";
 
 
-// ===== ENVIAR =====
+
+// ===== ENVIAR COMENTARIO =====
 function enviar(){
 
   let nombre =
@@ -50,16 +52,12 @@ function enviar(){
   fetch(API, {
     method: "POST",
     mode: "no-cors",
-    headers: {
-      "Content-Type": "text/plain"
-    },
     body: JSON.stringify({
       nombre: nombre,
       mensaje: mensaje
     })
   })
   .then(() => {
-     alert("Enviado 😄");
      document.getElementById("mensaje").value="";
      cargar();
   });
@@ -68,7 +66,17 @@ function enviar(){
 
 
 
-// ===== LEER =====
+// ===== DAR LIKE =====
+function like(id){
+
+  fetch(API + "?like=" + id)
+  .then(() => cargar());
+
+}
+
+
+
+// ===== CARGAR =====
 function cargar(){
 
   fetch(API)
@@ -81,12 +89,25 @@ function cargar(){
 
       html += `
       <div class="comentario">
+
         <b>${d.nombre}</b>
+
         <p>${d.mensaje}</p>
+
         <small>${d.fecha}</small>
+
+        <div class="zona-like">
+
+          <button onclick="like(${d.id})">
+            👍
+          </button>
+
+          <span>${d.likes || 0}</span>
+
+        </div>
+
       </div>
       `;
-
     });
 
     document.getElementById("lista")
@@ -96,14 +117,12 @@ function cargar(){
 
 }
 
-
 cargar();
 
 </script>
 
 </body>
 </html>
-
 
 
 
