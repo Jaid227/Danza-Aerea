@@ -1,41 +1,50 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Comentarios con Likes</title>
-  <link rel="stylesheet" href="estilos.css">
+<title>Zona de Comentarios</title>
+<link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
 
-<h1>Comentarios con 👍</h1>
+<div class="contenedor">
 
-<div class="formulario">
-  <input id="nombre" placeholder="Tu nombre">
+<h1>💬 Comunidad</h1>
+<p class="sub">
+Comparte tu opinión y apoya con un 👍
+</p>
+
+
+<div class="tarjeta">
+
+  <input id="nombre"
+   placeholder="Tu nombre">
 
   <textarea id="mensaje"
-    placeholder="Escribe tu comentario"></textarea>
+   placeholder="Escribe algo genial...">
+  </textarea>
 
-  <button onclick="enviar()">
-    Enviar
+  <button class="btn" onclick="enviar()">
+    Publicar
   </button>
+
 </div>
 
 
-<h2>Mensajes:</h2>
 <div id="lista"></div>
+
+</div>
 
 
 
 <script>
 
-// 👉 PON TU URL REAL AQUÍ
 const API =
 "https://script.google.com/macros/s/AKfycbxM8WNEmdasgS6_5OQzXdoXJG5hAEQgGJs0OHg21ZQdykhY9rLclb_dUYmsAEJ8yhsm0A/exec";
 
 
 
-// ===== ENVIAR COMENTARIO =====
+// ===== ENVIAR =====
 function enviar(){
 
   let nombre =
@@ -49,28 +58,47 @@ function enviar(){
     return;
   }
 
-  fetch(API, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify({
-      nombre: nombre,
-      mensaje: mensaje
+  fetch(API,{
+    method:"POST",
+    mode:"no-cors",
+    body:JSON.stringify({
+      nombre:nombre,
+      mensaje:mensaje
     })
   })
-  .then(() => {
-     document.getElementById("mensaje").value="";
-     cargar();
+  .then(()=>{
+    document.getElementById("mensaje").value="";
+    cargar();
   });
 
 }
 
 
 
-// ===== DAR LIKE =====
+// ===== LIKE ÚNICO =====
 function like(id){
 
-  fetch(API + "?like=" + id)
-  .then(() => cargar());
+  let usuario =
+   document.getElementById("nombre").value;
+
+  if(!usuario){
+    alert("Escribe tu nombre para dar like");
+    return;
+  }
+
+  fetch(API +
+   "?like=" + id +
+   "&usuario=" + usuario)
+
+  .then(r=>r.text())
+  .then(res=>{
+
+    if(res=="ya"){
+      alert("Ya diste like 😊");
+    }
+
+    cargar();
+  });
 
 }
 
@@ -79,41 +107,51 @@ function like(id){
 // ===== CARGAR =====
 function cargar(){
 
-  fetch(API)
-  .then(r => r.json())
-  .then(datos => {
+fetch(API)
+.then(r=>r.json())
+.then(datos=>{
 
-    let html = "";
+let html="";
 
-    datos.reverse().forEach(d => {
+datos.reverse().forEach(d=>{
 
-      html += `
-      <div class="comentario">
+html+=`
 
-        <b>${d.nombre}</b>
+<div class="comentario">
 
-        <p>${d.mensaje}</p>
+<div class="cabecera">
+  <span class="user">
+   👤 ${d.nombre}
+  </span>
 
-        <small>${d.fecha}</small>
+  <span class="fecha">
+   ${new Date(d.fecha)
+     .toLocaleDateString()}
+  </span>
+</div>
 
-        <div class="zona-like">
+<p class="texto">
+ ${d.mensaje}
+</p>
 
-          <button onclick="like(${d.id})">
-            👍
-          </button>
+<div class="zona-like">
 
-          <span>${d.likes || 0}</span>
+<button class="like"
+ onclick="like(${d.id})">
+ 👍 ${d.likes||0}
+</button>
 
-        </div>
+</div>
 
-      </div>
-      `;
-    });
+</div>
+`;
 
-    document.getElementById("lista")
-            .innerHTML = html;
+});
 
-  });
+document.getElementById("lista")
+        .innerHTML=html;
+
+});
 
 }
 
@@ -123,6 +161,3 @@ cargar();
 
 </body>
 </html>
-
-
-
