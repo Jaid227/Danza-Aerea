@@ -1,41 +1,84 @@
 body{
+  background: linear-gradient(
+    135deg,#667eea,#764ba2);
+
   font-family: Arial;
-  background: #f0f0f0;
+  min-height: 100vh;
+}
+
+.contenedor{
+  max-width: 600px;
+  margin: auto;
   padding: 20px;
 }
 
-.formulario{
+h1{
+  color: white;
+  text-align: center;
+}
+
+.sub{
+  color: #eee;
+  text-align: center;
+}
+
+.tarjeta{
   background: white;
   padding: 15px;
-  border-radius: 10px;
-  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #0003;
 }
 
 input, textarea{
   width: 100%;
-  margin: 5px 0;
-  padding: 6px;
+  margin: 6px 0;
+  padding: 8px;
+  border-radius: 8px;
+  border:1px solid #ccc;
 }
 
-button{
-  background: purple;
-  color: white;
-  border: none;
-  padding: 6px;
-  cursor: pointer;
+.btn{
+  width: 100%;
+  background:#6a5acd;
+  color:white;
+  border:none;
+  padding:8px;
+  border-radius:8px;
 }
 
 .comentario{
-  background: white;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
+  background:white;
+  margin:10px 0;
+  padding:10px;
+  border-radius:10px;
+  animation:aparece .3s;
 }
 
-.zona-like{
-  margin-top: 5px;
+.cabecera{
+  display:flex;
+  justify-content:space-between;
 }
 
+.user{
+  font-weight:bold;
+}
 
+.texto{
+  margin:8px 0;
+}
 
+.like{
+  background:#eee;
+  border:none;
+  padding:5px 10px;
+  border-radius:10px;
+}
 
+.like:hover{
+  background:#ddd;
+}
+
+@keyframes aparece{
+  from{opacity:0}
+  to{opacity:1}
+}
