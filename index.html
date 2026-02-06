@@ -1,163 +1,102 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
 <head>
-<title>Zona de Comentarios</title>
-<link rel="stylesheet" href="estilos.css">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="estilo.css">
+    <title>🔥 Danza Aérea & Pole Dance 🔥</title>
 </head>
 
 <body>
 
 <div class="contenedor">
 
-<h1>💬 Comunidad</h1>
-<p class="sub">
-Comparte tu opinión y apoya con un 👍
-</p>
+
+<!-- MENÚ INICIAL -->
+<section class="menu">
+    <h1>Elige tu disciplina inicial</h1>
+
+    <div class="opciones">
+        <a href="#aerea" class="boton">Danza Aérea</a>
+        <a href="#pole" class="boton">Pole Dance</a>
+    </div>
+</section>
 
 
-<div class="tarjeta">
+<!-- ============ DANZA AÉREA ============ -->
+<section id="aerea" class="disciplina aerea">
 
-  <input id="nombre"
-   placeholder="Tu nombre">
+    <header>
+        <h2>Danza Aérea</h2>
+        <h4>Maestra Sonia</h4>
+    </header>
 
-  <textarea id="mensaje"
-   placeholder="Escribe algo genial...">
-  </textarea>
+    <article>
+        <h3>
+            La danza aérea es el arte de soltar el peso del cuerpo
+            para dialogar con el vacío.
+        </h3>
 
-  <button class="btn" onclick="enviar()">
-    Publicar
-  </button>
+        <p class="horario">
+            Horarios: Lunes a Viernes – 7:30 PM
+        </p>
+
+        <p class="contacto">
+            Teléfono: 5591461227
+        </p>
+    </article>
+
+            <img src="imagenes/tela1.jpg" class="imagen">
+            <img src="imagenes/tela2.jpg" class="imagen">
+            <img src="imagenes/tela3.jpg" class="imagen">  
+
+</section>
+
+
+<!-- ============ POLE DANCE ============ -->
+<section id="pole" class="disciplina pole">
+
+    <header>
+        <h2>Pole Dance</h2>
+        <h4>Maestra Kari</h4>
+    </header>
+
+    <article>
+        <h3>
+            Sujeta el presente, suelta el temor.<br>
+            Cada giro es una conversación entre tu cuerpo y tu confianza.
+        </h3>
+
+        <p class="horario">
+            Horarios:<br>
+            Martes y Jueves – 8 PM<br>
+            Lunes, Miércoles y Viernes – 10 AM<br>
+            Martes, Miércoles y Jueves – 7 PM
+        </p>
+
+        <p class="contacto">
+            Teléfono: 5539030758
+        </p>
+    </article>
+
+            <img src="imagenes/tela1.jpg" class="imagen">
+            <img src="imagenes/tela2.jpg" class="imagen">
+            <img src="imagenes/tela3.jpg" class="imagen">
+
+</section>
+
+
+<!-- DIRECCIÓN COMÚN -->
+<footer class="direccion">
+    <h3>
+        Pino Suárez 470, El Salado,
+        56524 La Magdalena Atlicpac, Méx.
+    </h3>
+    <h4>2026</h4>
+</footer>
+
 
 </div>
-
-
-<div id="lista"></div>
-
-</div>
-
-
-
-<script>
-
-const API =
-"https://script.google.com/macros/s/AKfycbxM8WNEmdasgS6_5OQzXdoXJG5hAEQgGJs0OHg21ZQdykhY9rLclb_dUYmsAEJ8yhsm0A/exec";
-
-
-
-// ===== ENVIAR =====
-function enviar(){
-
-  let nombre =
-   document.getElementById("nombre").value;
-
-  let mensaje =
-   document.getElementById("mensaje").value;
-
-  if(!nombre || !mensaje){
-    alert("Llena todo");
-    return;
-  }
-
-  fetch(API,{
-    method:"POST",
-    mode:"no-cors",
-    body:JSON.stringify({
-      nombre:nombre,
-      mensaje:mensaje
-    })
-  })
-  .then(()=>{
-    document.getElementById("mensaje").value="";
-    cargar();
-  });
-
-}
-
-
-
-// ===== LIKE ÚNICO =====
-function like(id){
-
-  let usuario =
-   document.getElementById("nombre").value;
-
-  if(!usuario){
-    alert("Escribe tu nombre para dar like");
-    return;
-  }
-
-  fetch(API +
-   "?like=" + id +
-   "&usuario=" + usuario)
-
-  .then(r=>r.text())
-  .then(res=>{
-
-    if(res=="ya"){
-      alert("Ya diste like 😊");
-    }
-
-    cargar();
-  });
-
-}
-
-
-
-// ===== CARGAR =====
-function cargar(){
-
-fetch(API)
-.then(r=>r.json())
-.then(datos=>{
-
-let html="";
-
-datos.reverse().forEach(d=>{
-
-html+=`
-
-<div class="comentario">
-
-<div class="cabecera">
-  <span class="user">
-   👤 ${d.nombre}
-  </span>
-
-  <span class="fecha">
-   ${new Date(d.fecha)
-     .toLocaleDateString()}
-  </span>
-</div>
-
-<p class="texto">
- ${d.mensaje}
-</p>
-
-<div class="zona-like">
-
-<button class="like"
- onclick="like(${d.id})">
- 👍 ${d.likes||0}
-</button>
-
-</div>
-
-</div>
-`;
-
-});
-
-document.getElementById("lista")
-        .innerHTML=html;
-
-});
-
-}
-
-cargar();
-
-</script>
 
 </body>
 </html>
