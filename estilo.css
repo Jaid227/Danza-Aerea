@@ -1,113 +1,121 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial;
+}
 
 body{
-background: linear-gradient(
-135deg,#667eea,#764ba2);
-
-font-family: Arial;
-min-height: 100vh;
+background: linear-gradient(120deg, #1d2671, #c33764);
 }
-
-/* ===== IMÁGENES EN ESQUINAS ===== */
-
-.img-izquierda{
-position: fixed;
-top: 10px;
-left: 10px;
-width: 120px;
-border-radius: 10px;
-box-shadow: 0 0 10px #0003;
-}
-
-.img-derecha{
-position: fixed;
-top: 10px;
-right: 10px;
-width: 120px;
-border-radius: 10px;
-box-shadow: 0 0 10px #0003;
-}
-
-/* ================================ */
 
 .contenedor{
-max-width: 600px;
-margin: auto;
-padding: 20px;
+text-align: center;
 }
 
-h1{
+/* ----- MENU ----- */
+.menu{
+padding: 40px;
+}
+
+.menu h1{
 color: white;
-text-align: center;
+font-size: 40px;
+margin-bottom: 20px;
 }
 
-.sub{
-color: #eee;
-text-align: center;
+.opciones{
+display: flex;
+justify-content: center;
+gap: 20px;
 }
 
-.tarjeta{
-background: white;
-padding: 15px;
-border-radius: 12px;
-box-shadow: 0 0 10px #0003;
+.boton{
+background: #ff4b7a;
+padding: 15px 25px;
+color: white;
+text-decoration: none;
+border-radius: 10px;
+transition: 0.3s;
 }
 
-input, textarea{
-width: 100%;
-margin: 6px 0;
-padding: 8px;
-border-radius: 8px;
-border:1px solid #ccc;
+.boton:hover{
+background: #ff8fab;
+transform: scale(1.1);
 }
 
-.btn{
-width: 100%;
-background:#6a5acd;
-color:white;
-border:none;
-padding:8px;
-border-radius:8px;
+/* ----- SECCIONES ----- */
+.disciplina{
+margin: 40px 20px;
+padding: 20px;
+border-radius: 15px;
 }
 
-.comentario{
-background:white;
-margin:10px 0;
-padding:10px;
-border-radius:10px;
-animation:aparece .3s;
+.aerea{
+background: rgba(0,0,0,0.3);
 }
 
-.cabecera{
-display:flex;
-justify-content:space-between;
+.pole{
+background: rgba(0,0,0,0.5);
 }
 
-.user{
-font-weight:bold;
+.disciplina h2{
+font-size: 45px;
+color: #ffcce6;
 }
 
-.texto{
-margin:8px 0;
+.disciplina h4{
+color: white;
+margin-bottom: 10px;
 }
 
-.like{
-background:#eee;
-border:none;
-padding:5px 10px;
-border-radius:10px;
+article h3{
+color: pink;
+margin: 15px;
 }
 
-.like:hover
+.horario{
+color: white;
+font-size: 18px;
+}
 
-@keyframes aparece{
-from{opacity:0}
-to{opacity:1}
+.contacto{
+color: #ffd1e8;
+margin-top: 10px;
+}
+
+/* ----- IMÁGENES ----- */
+.galeria{
+margin-top: 15px;
+}
+
+.imagen{
+width: 220px;
+margin: 10px;
+transition: 0.3s;
+}
+
+.imagen:hover{
+transform: scale(1.15);
+}
+
+/* ----- DIRECCIÓN ----- */
+.direccion{
+margin-top: 30px;
+padding: 20px;
+color: white;
 }
 
 /* RESPONSIVO */
 @media(max-width: 700px){
-.img-izquierda,
-.img-derecha{
-width: 80px;
+.opciones{
+flex-direction: column;
 }
+
+
+.imagen{
+    width: 90%;
+}
+
+
 }
